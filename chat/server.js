@@ -7,12 +7,14 @@ const io = new Server(server);
 const port = 3000
 
 app.get('/', (req, res) => {
-  res.sendFile('index.html' , { root : __dirname});
+  res.send("Home Page")
 })
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
-});
+const usersRouter = require('./routes/users')
+const chatRouter = require('./routes/chat')(io)
+
+app.use("/users", usersRouter)
+app.use("/chat", chatRouter)
 
 server.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
