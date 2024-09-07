@@ -13,13 +13,16 @@ db.on('error', (error) => console.error(error))
 db.once('open', () => console.log("Connected to Database"))
 
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+app.set('view-engine', 'ejs')
 
 app.get('/', (req, res) => {
   res.send("Home Page")
 })
 
-const usersRouter = require('./routes/users');
-const chatRouter = require('./routes/chat')(io)
+const usersRouter = require('./routes/userRoute/users');
+const chatRouter = require('./routes/chatRoute/chat')(io)
 
 app.use("/users", usersRouter)
 app.use("/chat", chatRouter)
