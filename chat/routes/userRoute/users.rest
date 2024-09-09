@@ -2,12 +2,12 @@ GET http://localhost:3000/users
 
 ###
 
-POST http://localhost:3000/users
+POST http://localhost:3000/users/register
 Content-Type: application/json
 
 {
-    "username": "dhanh06",
-    "password": "123456"
+    "username": "aaa",
+    "password": "123"
 }
 
 ###
@@ -16,6 +16,6 @@ POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-    "username": "dhanh06",
-    "password": "123dsf456"
+    "username": "aaa",
+    "password": "123"
 }
