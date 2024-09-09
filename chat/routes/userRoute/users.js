@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
-router.get("/", async (req, res) => {
+router.get("/", authenticateToken, async (req, res) => {
     try {
         const users = await User.find()
         res.json(users)
@@ -71,6 +71,18 @@ router.post("/login", async (req, res) => {
         res.json({ message: "User doesm't exist!" })
     }
 })
+
+function authenticateToken(req, res, next){
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+    if(token == null) return res.sendStatus(401)
+
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+        if(err) return res.sendStatus(403)
+        req.user = user
+        next()
+    })
+}
 
 module.exports = router
 
