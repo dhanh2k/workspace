@@ -57,10 +57,11 @@ router.post("/login", async (req, res) => {
         console.log(existingUser)
         try {
             if (await bcrypt.compare(req.body.password, existingUser.password)) {
-                const user = {name: req.body.username}
+                const user = { name: req.body.username }
                 console.log(user)
-                const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
-                res.json(accessToken)
+                const accessToken = generateAccessToken(user)
+                const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECKET)
+                res.json({ accessToken, refreshToken })
             } else {
                 res.json({ message: "not allowed" })
             }
@@ -72,16 +73,20 @@ router.post("/login", async (req, res) => {
     }
 })
 
-function authenticateToken(req, res, next){
+function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]
-    if(token == null) return res.sendStatus(401)
+    if (token == null) return res.sendStatus(401)
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if(err) return res.sendStatus(403)
+        if (err) return res.sendStatus(403)
         req.user = user
         next()
     })
+}
+
+function generateAccessToken(user) {
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s' })
 }
 
 module.exports = router
