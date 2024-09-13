@@ -1,5 +1,5 @@
 GET http://localhost:3000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWFhIiwiaWF0IjoxNzI2MTEzNjk2LCJleHAiOjE3MjYxMTM3MjZ9.jJZdjA1yxtIP2V9Gsvd_RosjhGKBO2-wiJCTKhbe1pc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWFhIiwiaWF0IjoxNzI2MTk2NzE4LCJleHAiOjE3MjYxOTY3Nzh9.OFczqI1Evlo8qJWTey9H3dRUi_bupIhM5auxEmQj-EM
 
 ###
 
@@ -13,6 +13,16 @@ Content-Type: application/json
 
 ###
 
+POST http://localhost:3000/users/token
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWFhIiwiaWF0IjoxNzI2MTk2NzE4fQ.10tzsdaEBDu8COHZQkQvkogW4WribxKXg9kyul-zLkw"
+}
+
+
+###
+
 POST http://localhost:3000/users/login
 Content-Type: application/json
 
@@ -20,3 +30,14 @@ Content-Type: application/json
     "username": "aaa",
     "password": "123"
 }
+
+###
+
+DELETE http://localhost:3000/users/logout
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWFhIiwiaWF0IjoxNzI2MTk2NzE4fQ.10tzsdaEBDu8COHZQkQvkogW4WribxKXg9kyul-zLkw"
+}
+
+###
