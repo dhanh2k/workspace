@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* background-color: blue; */
+        }
+
+        .form-container {
+            border: 1px solid black;
+            border-radius: 5px;
+            width: 30%;
+            padding: 10px;
+        }
+
+        .form-container input {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .form-container input {
+            width: 100%;
+        }
+
+        .form-container button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <h1>Login Here</h1> -->
+    <form action="" method="POST" class="form-container">
+        <h1>Login Form</h1>
+        <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="text" id="password" name="password" required>
+        </div>
+        <button type="submit">Login</button>
+        <button type="button">Register</button>
+    </form>
+</body>
+</html>

@@ -64,7 +64,8 @@ router.post("/login", async (req, res) => {
                 const accessToken = generateAccessToken(user)
                 const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECKET)
                 refreshTokens.push(refreshToken)
-                res.json({ accessToken, refreshToken })
+                // res.json({ accessToken, refreshToken })
+                res.redirect('/chat')
             } else {
                 res.json({ message: "not allowed" })
             }
